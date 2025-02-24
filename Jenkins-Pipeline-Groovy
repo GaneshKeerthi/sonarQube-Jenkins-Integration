@@ -1,10 +1,32 @@
 pipeline{
 	agent any
 
+	tools{
+		maven "Maven-Tool";
+	}
+
 	stages{
 		stage("Welcome"){
 			steps{
 				echo "Welcome to Jenkins Declarative pipeline"
+			}
+		}
+		
+		stage("Maven compile"){
+			steps{
+				bat "mvn install"
+			}
+		}		
+		
+		stage("Maven Test"){
+			steps{
+				bat "mvn test"
+			}
+		}
+		
+		stage("Maven Production"){
+			steps{
+				bat "mvn package"
 			}
 		}
 	}
